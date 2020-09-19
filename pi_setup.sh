@@ -9,7 +9,9 @@ sudo apt-get -y upgrade
 #--------------
 #Install conda
 #--------------
-
+wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh
+sudo /bin/bash Miniconda3-latest-Linux-armv7l.sh
+echo 'export PATH="home/pi/miniconda3/bin:$PATH"' | sudo tee -a /home/pi/.bashrc
 
 #--------------
 #Install docker
@@ -31,4 +33,3 @@ systemctcl start docker.service
 #Reboot to apply all changes
 #--------------
 reboot
-
