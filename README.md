@@ -9,6 +9,6 @@ To bootstrap your pi with docker and conda, run the `pi_setup.sh` script
 
 When finished, open a new terminal and execute the following:
 
-`conda config --ad channels rpi`
+`conda config --add channels rpi`
 
 `conda update conda`
