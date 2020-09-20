@@ -15,5 +15,8 @@ When finished, open a new terminal and execute the following:
 
 `conda update conda`
 
-## Setup the environment
+## Set up the environment
 `sudo pip3 install -r requirements.txt`
+
+## Set up the Pi camera
+`sudo raspi-config` > Enable camera interace connection
