@@ -20,3 +20,8 @@ When finished, open a new terminal and execute the following:
 
 ## Set up the Pi camera
 `sudo raspi-config` > Enable camera interace connection
+
+## Download YOLO model weights
+`mkdir weights`
+
+`./download_weights.sh`
