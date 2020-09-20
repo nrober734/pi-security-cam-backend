@@ -32,13 +32,36 @@ From the `/torch_wheels` directory:
 
 `pip3 install torchvision-0.5.0a0+85b8fbf-cp37-cp37m-linux_armv7l.whl `
 
-Fixing the names:
+## Fixing the package naming bug after torch installation:
+
+This is a documented issue when installing torch on the Pi: [source](https://github.com/pytorch/pytorch/issues/574#issuecomment-274914572)
+
+Run the following commands to fix:
 
 `cd /home/pi/.local/lib/python3.7/site-packages/torch`
 
-`mv _C.so`
+`mv _C.cpython-37m-arm-linux-gnueabi.so _C.so`
+
+There is an additional bug with libopenblas fixed [here](https://github.com/sermanet/OverFeat/issues/10#issuecomment-40912417)
+
+Run the following commands to fix:
+
+`sudo apt-get install libopenblas-base`
+
+` export LD_LIBRARY_PATH=/usr/lib/openblas-base/`
+
+Test the installation success with:
+
+`python3`
+
+Then in the Python shell:
+
+`import torch`
+
+`import torchvision`
 
 ## Download YOLO model weights
+
 `mkdir weights`
 
 `./download_weights.sh`
