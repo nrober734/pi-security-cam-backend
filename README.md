@@ -15,12 +15,21 @@ When finished, open a new terminal and execute the following:
 
 `conda update conda`
 
+## TODO: dockerize
+
 ## Set up the environment
 `sudo pip3 install -r requirements.txt`
 
 ## Set up the Pi camera
 `sudo raspi-config` > Enable camera interace connection
 
+## Install torch and torchvision
+
+From the `/torch_wheels` directory:
+
+`pip3 install torch-1.4.0a0+8322165-cp37-cp37m-linux_armv7l.whl`
+
+`pip3 install torchvision-0.5.0a0+85b8fbf-cp37-cp37m-linux_armv7l.whl `
 ## Download YOLO model weights
 `mkdir weights`
 
