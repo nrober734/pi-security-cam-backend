@@ -1,0 +1,9 @@
+name: pi-sec-backend
+dependencies:
+  - numpy
+  - matplotlib
+  - tensorflow
+  - tensorboard
+  - terminaltables
+  - pillow
+  - tqdm
