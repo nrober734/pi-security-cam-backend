@@ -41,4 +41,6 @@ Fixing the names:
 ## Download YOLO model weights
 `mkdir weights`
 
+In the `/weights` directory run:
+
 `./download_weights.sh`
