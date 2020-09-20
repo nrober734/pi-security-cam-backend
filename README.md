@@ -27,7 +27,8 @@ When finished, open a new terminal and execute the following:
 
 From the `/torch_wheels` directory:
 
-`pip3 install torch-1.4.0a0+8322165-cp37-cp37m-linux_armv7l.whl`
+`pip3 install torch-1.4.0a0+7f73f1d-cp37-cp37m-linux_armv7l.whl`
+
 
 `pip3 install torchvision-0.5.0a0+85b8fbf-cp37-cp37m-linux_armv7l.whl `
 ## Download YOLO model weights
