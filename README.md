@@ -31,6 +31,13 @@ From the `/torch_wheels` directory:
 
 
 `pip3 install torchvision-0.5.0a0+85b8fbf-cp37-cp37m-linux_armv7l.whl `
+
+Fixing the names:
+
+`cd /home/pi/.local/lib/python3.7/site-packages/torch`
+
+`mv _C.so`
+
 ## Download YOLO model weights
 `mkdir weights`
 
