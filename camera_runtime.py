@@ -3,7 +3,7 @@
 from stream_processor import StreamProcessor
 
 
-class FrontCameraRuntime:
+class CameraRuntime:
 
     def __init__(self):
 
@@ -20,3 +20,11 @@ class FrontCameraRuntime:
     #
     #     print('What about garbage?')
     #     return self.yolo.post_process_stream()
+
+
+if __name__ == '__main__':
+
+    camera_runtime = CameraRuntime()
+
+    while 1 == 1:
+        camera_runtime.run_camera()
