@@ -14,3 +14,6 @@ When finished, open a new terminal and execute the following:
 `conda config --add channels rpi`
 
 `conda update conda`
+
+## Setup the environment
+`sudo pip3 install -r requirements.txt`
