@@ -1,6 +1,5 @@
 import numpy as np
 from detection_utilities import detect
-from inventory_state_utils import update_inventory_state
 
 
 class YoloExecutor:
@@ -24,8 +23,5 @@ class YoloExecutor:
         for item in self.detections:
 
             item_name = item[-1]
-            instance_inventory_dict = update_inventory_state(input_items={item_name: 1},
-                                                             state_inventory_dict=instance_inventory_dict,
-                                                             operation='add')
 
         return instance_inventory_dict
