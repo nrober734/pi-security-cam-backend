@@ -9,7 +9,6 @@ class StreamProcessor:
     def __init__(self, operation: str):
         self.IMG_H = 720
         self.IMG_W = 1280
-        self.fr_calc = 1
         self.sample_size = 2
         self.export_image_name = f'{operation}_image.jpg'
 
@@ -25,8 +24,3 @@ class StreamProcessor:
         cam.stop_preview()
         cam.close()
         return frame
-
-    def display_stream(self):
-        # Stream visual overlay can go here
-        # freq = cv2.getTickFrequency()
-        return 0

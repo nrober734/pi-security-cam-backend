@@ -5,8 +5,6 @@ from detection_utilities import detect
 class YoloExecutor:
 
     def __init__(self):
-        print('doin tings')
-        self.labels = None
         self.detections = []
 
     def get_labels(self, input_frame: np.ndarray) -> dict:
@@ -20,8 +18,8 @@ class YoloExecutor:
         print(self.detections)
         instance_inventory_dict = {}
 
-        for item in self.detections:
+        for faces in self.detections:
 
-            item_name = item[-1]
+            item_name = faces[-1]
 
         return instance_inventory_dict
