@@ -1,5 +1,4 @@
 from picamera import PiCamera
-#import cv2
 import io
 import time
 
