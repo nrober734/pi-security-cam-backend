@@ -2,22 +2,18 @@ from models import *
 from utils.utils import *
 from utils.datasets import *
 
-import os
 import numpy as np
 import time
 import datetime
-
-from PIL import Image
-
 import torch
 import torch.nn.functional as F
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 
+from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 from torchvision.transforms import transforms
 from torch.autograd import Variable
-
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 from matplotlib.ticker import NullLocator
 
 
