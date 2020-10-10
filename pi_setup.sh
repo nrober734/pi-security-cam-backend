@@ -7,13 +7,6 @@ sudo apt-get -y update
 sudo apt-get -y upgrade
 
 #--------------
-#Install conda
-#--------------
-curl "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-armv7l.sh" -o "Miniconda.sh"
-bash ./Miniconda.sh
-echo "yes yes" | ./Miniconda.sh
-
-#--------------
 #Install docker
 #--------------
 sudo apt-get -y install apt-transport-https ca-certificates software-properties-common -y
