@@ -27,6 +27,7 @@ class StreamingOutput(object):
         self.condition = Condition()
 
     def write(self, buf):
+        print(f"Buffer inspection: {buf}")
         if buf.startswith(b'\xff\xd8'):
             # New frame, copy the existing buffer's content and notify all
             # clients it's available
@@ -91,8 +92,6 @@ class DetectMotion(picamera.array.PiMotionAnalysis):
             ).clip(0, 255).astype(np.uint8)
         # If there're more than 10 vectors with a magnitude greater
         # than 60, then say we've detected motion
-
-        print(f"Value of a is {a}")
 
         if (a > 60).sum() > 10:
             print('Motion detected!')
