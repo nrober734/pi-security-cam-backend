@@ -102,8 +102,8 @@ with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
     output = StreamingOutput()
 
     with DetectMotion(camera) as motion_output:
-        camera.resolution = (640, 480)
         camera.start_recording(output, format='mjpeg', motion_output=motion_output)
+        camera.wait_recording(30)
 
         try:
             address = ('', 8000)
