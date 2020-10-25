@@ -1,5 +1,7 @@
 import io
 import picamera
+import picamera.array
+import numpy as np
 import logging
 import socketserver
 from threading import Condition
@@ -17,6 +19,7 @@ PAGE="""\
 </html>
 """
 
+
 class StreamingOutput(object):
     def __init__(self):
         self.frame = None
@@ -33,6 +36,7 @@ class StreamingOutput(object):
                 self.condition.notify_all()
             self.buffer.seek(0)
         return self.buffer.write(buf)
+
 
 class StreamingHandler(server.BaseHTTPRequestHandler):
     def do_GET(self):
@@ -73,16 +77,34 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_error(404)
             self.end_headers()
 
+
 class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
     allow_reuse_address = True
     daemon_threads = True
 
+
+class DetectMotion(picamera.array.PiMotionAnalysis):
+    def analyze(self, a):
+        a = np.sqrt(
+            np.square(a['x'].astype(np.float)) +
+            np.square(a['y'].astype(np.float))
+            ).clip(0, 255).astype(np.uint8)
+        # If there're more than 10 vectors with a magnitude greater
+        # than 60, then say we've detected motion
+        if (a > 60).sum() > 10:
+            print('Motion detected!')
+
+
 with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
     output = StreamingOutput()
-    camera.start_recording(output, format='mjpeg')
-    try:
-        address = ('', 8000)
-        server = StreamingServer(address, StreamingHandler)
-        server.serve_forever()
-    finally:
-        camera.stop_recording()
+
+    with DetectMotion(camera) as motion_output:
+        camera.resolution = (640, 480)
+        camera.start_recording(output, format='mjpeg', motion_output=motion_output)
+
+        try:
+            address = ('', 8000)
+            server = StreamingServer(address, StreamingHandler)
+            server.serve_forever()
+        finally:
+            camera.stop_recording()
