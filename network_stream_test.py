@@ -85,26 +85,24 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
 
 class DetectMotion(picamera.array.PiMotionAnalysis):
     def analyze(self, a):
+        a = np.sqrt(
+            np.square(a['x'].astype(np.float)) +
+            np.square(a['y'].astype(np.float))
+            ).clip(0, 255).astype(np.uint8)
+        # If there're more than 10 vectors with a magnitude greater
+        # than 60, then say we've detected motion
 
-        print("Doin a analyze!")
-        # a = np.sqrt(
-        #     np.square(a['x'].astype(np.float)) +
-        #     np.square(a['y'].astype(np.float))
-        #     ).clip(0, 255).astype(np.uint8)
-        # # If there're more than 10 vectors with a magnitude greater
-        # # than 60, then say we've detected motion
-        #
-        # print(f"Value of a is {a}")
-        #
-        # if (a > 60).sum() > 10:
-        #     print('Motion detected!')
+        print(f"Value of a is {a}")
+
+        if (a > 60).sum() > 10:
+            print('Motion detected!')
 
 
 with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
     output = StreamingOutput()
 
     with DetectMotion(camera) as motion_output:
-        camera.start_recording(output, format='mjpeg', motion_output=motion_output)
+        camera.start_recording(output, format='h264', motion_output=motion_output)
 
         try:
             address = ('', 8000)
